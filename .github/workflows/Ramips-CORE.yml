@@ -1,5 +1,5 @@
 #云编译公用核心
-name: OWRT-TC
+name: Ramips-CORE
 
 on:
   workflow_call:
@@ -115,6 +115,24 @@ jobs:
 
           make defconfig
 
+      - name: Cleanup Toolchain
+        run: |
+          cd ./owrt
+
+          make dirclean
+
+      - name: Download Packages
+        run: |
+          cd ./owrt
+
+          make download -j$(nproc)
+
+      - name: Compile Firmware
+        run: |
+          cd ./owrt
+
+          make -j$(nproc) || make -j1 V=s
+
       - name: Space Usage
         run: |
           cd ./owrt
@@ -129,7 +147,20 @@ jobs:
         run: |
           cd ./owrt && mkdir ./upload
 
+          rm -rf $(find ./bin/targets/ -iregex ".*\(json\|manifest\|buildinfo\|sha256sums\|packages\)$")
+          cp -rf $(find ./bin/targets/ -type f -iname "*.*") ./upload/
           cp -rf ./.config ./upload/Config_"$OWRT_TARGET"_"$OWRT_SOURCE"_"$OWRT_DATE".txt
+
+          cd ./upload
+
+          for var in $OWRT_TYPE ; do
+            for file in $(find ./ -type f -iname "*$var*.*" ! -iname "*.txt") ; do
+              export ext=$(basename "$file" | cut -d '.' -f 2-)
+              export name=$(basename "$file" | cut -d '.' -f 1 | grep -io "\($var\).*")
+              export new_file="$OWRT_SOURCE"_"$name"_"$OWRT_DATE"."$ext"
+              mv -f "$file" "$new_file"
+            done
+          done
 
       - name: Release Firmware
         uses: softprops/action-gh-release@master
@@ -137,13 +168,21 @@ jobs:
           tag_name: ${{env.OWRT_TARGET}}_${{env.OWRT_SOURCE}}_${{env.OWRT_DATE}}
           files: ./owrt/upload/*.*
           body: |
-            测试专用
+            这是个平台固件包，内含多个设备！
+            请注意选择你需要的设备固件！
+            不要问，更就完事了！
 
             源码：${{env.OWRT_SOURCE}}
             平台：${{env.OWRT_TARGET}}
             设备：${{env.OWRT_TYPE}}
             密码：${{env.OWRT_PW}}
             地址：${{env.OWRT_IP}}
+
+      - name: Delete Old Releases
+        uses: dev-drprasad/delete-older-releases@master
+        with:
+          keep_latest: 6
+          delete_tags: true
 
       - name: Delete Old Workflows
         uses: Mattraks/delete-workflow-runs@main
