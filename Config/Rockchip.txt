@@ -5,9 +5,6 @@ CONFIG_TARGET_rockchip_armv8=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r2s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c=y
 
-#版本号
-CONFIG_LINUX_5_15=n
-CONFIG_LINUX_6_1=y
 #LEDE源
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_fastrhino_r66s=y
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_fastrhino_r68s=y
