@@ -1,5 +1,6 @@
 #!/bin/bash
 
+git clone --depth=1 --single-branch https://github.com/coolsnowwolf/packages.git
 #netspeedtest
 git clone --depth=1 --single-branch https://github.com/sirpdboy/netspeedtest.git
 #Linkease
