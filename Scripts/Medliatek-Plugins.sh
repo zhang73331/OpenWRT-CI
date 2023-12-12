@@ -13,8 +13,8 @@ git clone --depth=1 --single-branch https://github.com/gngpp/luci-app-design-con
 git clone --depth=1 --single-branch --branch $(echo $OWRT_URL | grep -iq "lede" && echo "18.06" || echo "master") https://github.com/jerrykuku/luci-theme-argon.git
 git clone --depth=1 --single-branch --branch $(echo $OWRT_URL | grep -iq "lede" && echo "18.06" || echo "master") https://github.com/jerrykuku/luci-app-argon-config.git
 #kenzok8-openwrt-packages
-#git clone --depth=1 --single-branch https://github.com/kenzok8/openwrt-packages.git
-#git clone --depth=1 --single-branch https://github.com/kenzok8/small.git
+git clone --depth=1 --single-branch https://github.com/kenzok8/openwrt-packages.git
+git clone --depth=1 --single-branch https://github.com/kenzok8/small.git
 #Pass Wall
 git clone --depth=1 --single-branch https://github.com/xiaorouji/openwrt-passwall.git
 git clone --depth=1 --single-branch https://github.com/xiaorouji/openwrt-passwall2.git
