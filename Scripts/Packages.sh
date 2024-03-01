@@ -28,6 +28,12 @@ UPDATE_PACKAGE "argon-config" "jerrykuku/luci-app-argon-config" "$([[ $WRT_URL =
 UPDATE_PACKAGE "helloworld" "fw876/helloworld" "master"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev"
 
+UPDATE_PACKAGE "istore" "linkease/istore" "main"
+UPDATE_PACKAGE "nas-packages" "linkease/nas-packages" "master"
+UPDATE_PACKAGE "nas-packages-luci" "linkease/nas-packages-luci" "main"
+UPDATE_PACKAGE "argone" "kenzok78/luci-theme-argone" "main"
+UPDATE_PACKAGE "argone-config" "kenzok78/luci-app-argone-config" "main"
+
 UPDATE_PACKAGE "netspeedtest" "sirpdboy/netspeedtest" "master"
 
 if [[ $WRT_URL == *"immortalwrt"* ]]; then
