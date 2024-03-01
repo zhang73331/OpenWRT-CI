@@ -28,6 +28,8 @@ UPDATE_PACKAGE "argon-config" "jerrykuku/luci-app-argon-config" "$([[ $WRT_URL =
 UPDATE_PACKAGE "helloworld" "fw876/helloworld" "master"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev"
 
+UPDATE_PACKAGE "netspeedtest" "sirpdboy/netspeedtest" "master"
+
 if [[ $WRT_URL == *"immortalwrt"* ]]; then
 	#UPDATE_PACKAGE "homeproxy" "muink/homeproxy" "dev"
 	UPDATE_PACKAGE "homeproxy" "immortalwrt/homeproxy" "dev"
